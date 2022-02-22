@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+function listUsers {
+  awk -F ':' '{print $1}' /etc/passwd
+}
+
+function listShells {
+  awk -F "/" '/^\// {print $NF}' /etc/shells | uniq | sort
+}
+
+if [ $1 == "shells" ]; then
+  listShells
+elif [ $1 == "users" ]; then
+  listUsers
+elif [ $1 == "disks" ]; then
+ lsblk | awk '{print $1}' | grep -iv "loop" | grep -iv "name"
+else
+  printf "Useage: dlist <option> e.g. dlist shells"
+  exit 1
+fi
+

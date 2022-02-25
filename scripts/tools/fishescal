@@ -1,0 +1,12 @@
+#!/usr/bin/env fish
+if test "$1" = ""
+    printf "Usage: fishescal <argument> e.g. 'fishescal doas'"; exit 1
+end
+
+if test "$privE" == "$1"
+    printf "The privilege escalation tool is already set to $1"
+else
+    set --erase privE
+    set -Ux privE "$1"
+    exit 0
+end

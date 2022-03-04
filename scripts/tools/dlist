@@ -7,12 +7,16 @@ function listShells {
   awk -F "/" '/^\// {print $NF}' /etc/shells | uniq | sort
 }
 
+listDisks() {
+ lsblk | awk '{print $1}' | grep -iv "loop" | grep -iv "name"
+}
+
 if [ $1 == "shells" ]; then
   listShells
 elif [ $1 == "users" ]; then
   listUsers
 elif [ $1 == "disks" ]; then
- lsblk | awk '{print $1}' | grep -iv "loop" | grep -iv "name"
+  listDisks
 else
   printf "Usage: dlist <option> e.g. 'dlist shells'"
   exit 1

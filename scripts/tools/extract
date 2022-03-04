@@ -1,9 +1,26 @@
 #! /usr/bin/env bash
 cpIso() {
-  mkdir /tmp/image
-  sudo mount  $1 /tmp/image -o ro,loop -t iso9660
-  cp /tmp/image/* ./image
-  sudo umount /tmp/image
+  printf "Notice: An Iso cannot be decompressed, it will be mounted, copied, then unmounted.\n For this sudo is used."
+  file="$1"
+  dirName="$(printf '$file' | awk -F '.' '{print $1}' )"
+  sudo mkdir /tmp/${dirname}
+  sudo mount  $1 /tmp/${dirname} -o ro,loop -t iso9660 || sudo rmdir /tmp/${dirname} && echo "ISO failed to mount. Cannot extract files using extract." && exit
+  sudo cp -rv /tmp/${dirname}/* ./${dirname}
+  sudo umount /tmp/${dirname}
+  rmdir /tmp/${dirname}
+  sudo chown $USER ./${dirname}
+  echo "files have been transferred to ./${dirName}"
+}
+
+cpDmg() {
+  find /lib/modules -name "hfs*.ko" || printf "hfs kernel modules not found, cannot continue." && exit 1
+  file="$1"
+  dirName="$(printf "$file" | awk -F '.' '{print $1}' )"
+  sudo mkdir /tmp/${dirname}
+  sudo mount -t hfsplus $1 /tmp/${dirname} || sudo rmdir /tmp/${dirname} && printf "File '$1' is either unsupported or compressed. Cannot extract files using extract. \nTry using 'dmg2img'." && exit 1
+  sudo cp -rv /tmp/${dirname}/* ./${dirname}
+  sudo umount /tmp/${dirname}
+  sudo chown $USER ./${dirname}
 }
 
 if [ -f "$1" ] ; then
@@ -25,9 +42,11 @@ if [ -f "$1" ] ; then
     *.xz)        xz -d $1      ;;
     *.shar)      unshar $1     ;;
     *.iso)       cpIso         ;;
+    version)  echo "version 1.0.1";;
     *)           echo -e "'$1' cannot be extracted via extract. please do so manually.\n" ;;
   esac
 else
   echo -e "'$1' is not a valid file \n"
 fi
 
+exit 0

@@ -1,4 +1,16 @@
 #!/usr/bin/env fish
+# ______ _____  _____ _    _ ______  _____  _____          _      
+#|  ____|_   _|/ ____| |  | |  ____|/ ____|/ ____|   /\   | |       AUTHOR:  Decator  
+#| |__    | | | (___ | |__| | |__  | (___ | |       /  \  | |       WEBSITE: https://el-wumbus.github.io/
+#|  __|   | |  \___ \|  __  |  __|  \___ \| |      / /\ \ | |       DISCORD: https://discord.gg/8wBUFeGGYc
+#| |     _| |_ ____) | |  | | |____ ____) | |____ / ____ \| |____   GITHUB:  https://github.com/El-Wumbus
+#|_|    |_____|_____/|_|  |_|______|_____/ \_____/_/    \_\______|
+# NAME: fishescal
+# DESCRIPTION: changes the privilege escalation tool in the config.fish when using the variable $privE,
+# this is done in my(decator) configs
+# verison 0.1.0 TESTING
+
+fishconfigL = "$HOME/.config/fish/config.fish"
 if test "$1" = ""
     printf "Usage: fishescal <argument> e.g. 'fishescal doas'"; exit 1
 end
@@ -6,7 +18,14 @@ end
 if test "$privE" == "$1"
     printf "The privilege escalation tool is already set to $1"
 else
-    set --erase privE
-    set -Ux privE "$1"
+    lineNum = (grep -n 'set privE' $fishconfigL | awk -F ':' '{print $1}') # Returns the line that 'set privE' is found
+    if test "$lineNum" = ""
+        echo "set priveE \"doas\""
+    else if test $lineNum -lt 1
+        exit 1
+    end
+
+    sed -i "${lineNum}s/.*/privE=\"${1}\"/" "${fishconfigL}" # Replace the line that the 'privE' variable is defined
+    source ${fishconfigL}
     exit 0
 end

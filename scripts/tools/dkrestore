@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+extract version && isextract=true || isextract=false
+
+getDirName() {
+    dirName="$(printf '$file' | awk -F '.' '{print $1}' )"
+}
+
+if [ $isextract != false ]; then
+    extract $1
+    getDirName
+    cp -rv ./$dirName/* $HOME/.config/
+else
+    tar xjf $1
+    file=$1
+    getDirName
+    cp -rv ./$dirName/* $HOME/.config/
+fi

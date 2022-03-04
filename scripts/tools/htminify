@@ -1,0 +1,38 @@
+#! /usr/bin/env bash
+# name: htminify
+# description: minify html and css files
+# AUTHOR:  Decator
+# WEBSITE: https://el-wumbus.github.io/
+# DISCORD: https://discord.gg/8wBUFeGGYc
+# GITHUB:  https://github.com/El-Wumbus
+
+verNumber="0.1.0"
+
+if [ ! -f "$1" ] ; then
+  echo -e "'$1' is not a valid file \n"
+fi
+
+version() {
+ printf "%s",$verNumber
+}
+
+if [ "${1}" == "-v" ]; then 
+  version
+  exit 0
+else 
+  if [ "${1}" == "" ]; then 
+    echo "usage: minify [file] [Optional: output file]"
+    exit 1
+  fi
+fi
+
+minified=$(sed -e 's/   //g' -e ':a;N;$!ba;s/\n//g' "$1" | sed -r '/^\s+$/d')
+
+if [ "$2" == "" ]; then 
+  echo "$minified"
+  exit 0
+else
+  Ofile="$2"
+  echo "$minified" > "$Ofile"
+  exit 0
+fi

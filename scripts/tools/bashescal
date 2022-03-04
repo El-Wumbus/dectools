@@ -1,16 +1,30 @@
 #!/usr/bin/env bash
+# ____           _____ _    _ ______  _____  _____          _ 
+#|  _ \   /\    / ____| |  | |  ____|/ ____|/ ____|   /\   | |      AUTHOR:  Decator
+#| |_) | /  \  | (___ | |__| | |__  | (___ | |       /  \  | |      WEBSITE: https://el-wumbus.github.io/
+#|  _ < / /\ \  \___ \|  __  |  __|  \___ \| |      / /\ \ | |      DISCORD: https://discord.gg/8wBUFeGGYc
+#| |_) / ____ \ ____) | |  | | |____ ____) | |____ / ____ \| |____  GITHUB:  https://github.com/El-Wumbus
+#|____/_/    \_\_____/|_|  |_|______|_____/ \_____/_/    \_\______|
+# NAME: bashescal
+# DESCRIPTION: changes the privilege escalation tool in the bashrc when using the variable $privE,
+# this is done in my(decator) configs
+# verison 0.1.0 TESTING
 
 if [ "$1" == "" ]; then
     printf "Usage: bashescal <argument> e.g. 'bashescal doas'"; exit 1
 fi
 
 if [ "$privE" == "$1" ]; then
-    printf "The privilege escalation tool is already set to %s", "$1"
+    printf "The \$privE is already set to %s", "$1"
 else
     lineNum=$(grep -n 'export privE=' $HOME/.bashrc | awk -F ':' '{print $1}') # Returns the line that 'export privE=' is found
-    if [ "$lineNum" == "" ] || [ $lineNum -lt 1 ]; then
-        exit 1
+    if [ "$lineNum" == "" ]; then
+        echo "export privE='$1'" >> $HOME/.bashrc # If the variable declaration isnt found in in the bashrc then it will append the line and exit.
+        exit 0
+    elif [ $lineNum -lt 1 ]; then 
+    printf "Line Number Cannot be less than one" exit 1
     fi
+
     sed -i "${lineNum}s/.*/privE=\"${1}\"/" "$HOME/.bashrc" # Replace the line that the 'privE' variable is defined
     source $HOME/.bashrc
 fi

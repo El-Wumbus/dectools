@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 
-installTools() {
+installScripts() {
   sudo chmod +x ./scripts/tools/*
   cp -rv ./scripts/tools/* $HOME/.local/bin/
+}
+
+compileRust() {
+  mkdir binaries
+  echo "compiling expertc..."
+  rustc ./source/expertc/src/main.rs -o ./binaries/expertc > /dev/null
 }
 
 printf "Starting..."
 
 
 install() {
-  installTools && printf "Installed Tools"
+  installScripts && printf "Installed Scripts"
 }
 
 while true; do

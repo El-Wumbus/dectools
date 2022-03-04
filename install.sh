@@ -1,29 +1,34 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
-installScripts() {
+installTools() {
   sudo chmod +x ./scripts/tools/*
   cp -rv ./scripts/tools/* $HOME/.local/bin/
 }
 
-compileRust() {
-  mkdir binaries
-  echo "compiling expertc..."
-  rustc ./source/expertc/src/main.rs -o ./binaries/expertc > /dev/null
+compileBinaries() {
+  cd ./source/
+  mkdir ../bin
+  rustc ./expertc/src/main.rs -o ../bin/expertc > /dev/null
+  gcc ./dedit/src/dedit.c -o ../bin/dedit
+  cd ..
+  clear
 }
 
-printf "Starting..."
+installBinaries(){
+  cd ./source
+  sudo cp -rv ../bin/expertc /usr/local/bin
+  sudo cp -rv ../bin/dedit /usr/local/bin
+  rm -f ./bin/*
+  cd ..
+}
+
+printf "Starting...\n"
 
 
 install() {
-  installScripts && printf "Installed Scripts"
+  compileBinaries && printf "\nCompiled Binaries\n\n"
+  installTools && printf "Installed Scripts\n\n"
+  installBinaries && printf "Installed Biniares\n"
 }
 
-while true; do
-  read -pr "WARNING... THIS WILL OVERWRITE SOME OF YOUR CONFIGS!!! Continue?: [y/N]" yesNo
-  case $yesNo in
-      [Yy]* ) install ;;
-      [Nn]* ) exit 0  ;;
-      * ) printf "Please answer yes[y] or no[n]." ;;
-  esac
-done
-
+install

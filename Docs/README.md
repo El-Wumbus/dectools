@@ -6,7 +6,28 @@ DECTOOLS
 
 > Some may work onm macOS, though functionality isn't a priority.
 
-## Tools
+*Depenencies: `python`, `bash`, and `pyton-pip`*
+
+# Install
+
+## Compile from source
+
+*Build Dependencies: `rust`, and `gcc`*
+
+clone and run the install script
+
+```shell
+git clone https://github.com/El-Wumbus/dectools.git
+cd dectools
+sudo chmod u+x ./install.sh
+./install.sh
+```
+
+## Install pre-compiled *binaries*
+
+***NOT AVALIBLE IN DEVELOPMENT***
+
+# Tools
 
 - `htminify` - A bash script that quickly minifies html and css.
 
@@ -20,14 +41,19 @@ DECTOOLS
 ### example
 
 [![asciicast](https://asciinema.org/a/BrQnlA1bTXzhLk6VhAHWrZGEA.svg)](https://asciinema.org/a/BrQnlA1bTXzhLk6VhAHWrZGEA)
-> This is not a video, you can copy and paste, as well as other things.
 
 - extract - Perhaps the most useful script in this repo; this script allows for quick extraction of archives(compressed or otherwise) with the appropriate file extensions. This script simplifies extraction of archives.
+
 > [supported formats](https://github.com/El-Wumbus/dectools/blob/development/Docs/ExtractSupportedFileTypes.md)
 
 ### example
 
 [![asciicast](https://asciinema.org/a/dL4Nlw3IoVAOtAms38o5uezMR.svg)](https://asciinema.org/a/dL4Nlw3IoVAOtAms38o5uezMR)
-> This is not a video, you can copy and paste, as well as other things.
+
+- namegen - A python script to generate random first and last names.
+
+### example
+
+[![asciicast](https://asciinema.org/a/473926.svg)](https://asciinema.org/a/473926)
 
 - More misc tools...

@@ -9,7 +9,6 @@ compileBinaries() {
   cd ./source/ || exit
   mkdir ../bin
   rustc ./expertc/src/main.rs -o ../bin/expertc >/dev/null
-  gcc ./dedit/src/dedit.c -o ../bin/dedit
   cd ..
   clear
 }
@@ -17,7 +16,6 @@ compileBinaries() {
 installBinaries() {
   cd ./source || exit
   sudo cp -rv ../bin/expertc /usr/local/bin
-  sudo cp -rv ../bin/dedit /usr/local/bin
   rm -f ./bin/*
   cd ..
 }

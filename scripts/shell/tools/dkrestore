@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+getDirName() {
+  dirName="$(printf "$file" | awk -F '.' '{print $1}')"
+}
+
+restore() {
+  extract version && isextract=true || isextract=false
+  if [ $isextract != false ]; then
+    extract $1
+    getDirName
+    cp -rv ./$dirName/* $HOME/.config/
+  else
+    tar xjf $1
+    file=$1
+    getDirName
+    cp -rv ./$dirName/* $HOME/.config/
+  fi
+}
+
+read -rp "Do you want to backup KDE? [Y/n] " yn
+case $yn in
+[Yy]*) restore "$@";;
+[Nn]*) exit 0 ;;
+"") restore "$@";;
+esac

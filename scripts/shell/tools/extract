@@ -1,0 +1,55 @@
+#! /usr/bin/env bash
+cpIso() {
+  printf "Notice: An Iso cannot be decompressed, it will be mounted, copied, then unmounted.\n For this sudo is used."
+  file="$1"
+  dirName="$(printf "$file" | awk -F '.' '{print "$1"}')"
+  if [ "${dirName}" == "" ]; then
+    dirName="ExtractedIso"
+  fi
+  sudo mkdir /tmp/"${dirName}"
+  sudo mount "$1" /tmp/"${dirName}" -o ro,loop -t iso9660 || sudo rmdir /tmp/"${dirName}" && echo "ISO failed to mount. Cannot extract files using extract." && exit
+  sudo cp -rv /tmp/"${dirName}"/* ./"${dirName}"
+  sudo umount /tmp/"${dirName}"
+  rmdir /tmp/"${dirName}"
+  sudo chown "$USER" ./"${dirName}"
+  echo "files have been transferred to ./${dirName}"
+}
+
+cpDmg() {
+  find /lib/modules -name "hfs*.ko" || printf "hfs kernel modules not found, cannot continue." && exit 1
+  file="$1"
+  dirName="$(printf "$file" | awk -F '.' '{print "$1"}')"
+  sudo mkdir /tmp/"${dirName}"
+  sudo mount -t hfsplus "$1" /tmp/"${dirName}" || sudo rmdir /tmp/"${dirName}" && printf "File '%s' is either unsupported or compressed. Cannot extract files using extract. \nTry using 'dmg2img'.", "$1" && exit 1
+  sudo cp -rv /tmp/"${dirName}"/* ./"${dirName}"
+  sudo umount /tmp/"${dirName}"
+  sudo chown "$USER" ./"${dirName}"
+}
+
+if [ -f "$1" ]; then
+  case "$1" in
+  *.tar.bz2) tar xjf "$1" ;;
+  *.tar.gz) tar xzf "$1" ;;
+  *.bz2) bunzip2 "$1" ;;
+  *.rar) unrar x "$1" ;;
+  *.gz) gunzip "$1" ;;
+  *.tar) tar xf "$1" ;;
+  *.tbz2) tar xjf "$1" ;;
+  *.tgz) tar xzf "$1" ;;
+  *.zip) unzip "$1" ;;
+  *.Z) uncompress "$1" ;;
+  *.7z) 7z x "$1" ;;
+  *.deb) ar x "$1" ;;
+  *.tar.xz) tar xf "$1" ;;
+  *.tar.zst) unzstd "$1" ;;
+  *.xz) xz -d "$1" ;;
+  *.shar) unshar "$1" ;;
+  *.iso) cpIso "$@" ;;
+  version) echo "version 0.2.0" ;;
+  *) echo -e "'$1' cannot be extracted via extract. please do so manually.\n" ;;
+  esac
+else
+  echo -e "'$1' is not a valid file \n"
+fi
+
+exit 0

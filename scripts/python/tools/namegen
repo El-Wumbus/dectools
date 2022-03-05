@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+import names
+import sys
+if len(sys.argv) > 1:
+  argumentOne = int(sys.argv[1])
+else:
+  argumentOne = 1
+
+if argumentOne > 0:
+  for i in range(argumentOne):
+    print(names.get_full_name())
+
+exit

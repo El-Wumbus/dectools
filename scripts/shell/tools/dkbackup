@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+fail() {
+    printf "an error has occured, please refer to the terminal output"
+    exit
+}
+kdeMainBak() {
+    mkdir ./dkdeBak
+    cd ./dkdeBak || exit
+    cp -rv $HOME/.config/k* ./
+    cp -rv $HOME/.config/plasma* ./
+    cd ../
+    echo "main complete"
+}
+
+kdeArchiveCreate() {
+    tar -jcvf dKdeBackup.tar.bz2 ./dkdeBak
+    location="$(pwd)/dKdeBackup.tar.bz2"
+    rm -rf ./dkdeBak
+    printf "the compressed archive backup is located at %s", $location
+    printf "archive finished..."
+}
+kdeBackup() {
+    kdeMainBak
+    kdeArchiveCreate
+    printf "finished"
+}
+
+read -rp "Do you want to backup KDE? [Y/n] " yn
+case $yn in
+    [Yy]* ) kdeBackup;;
+    [Nn]* ) exit 0;;
+    "" ) kdeBackup;;
+esac

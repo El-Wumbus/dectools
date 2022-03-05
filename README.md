@@ -6,6 +6,8 @@ DECTOOLS
 
 > Some may work onm macOS, though functionality isn't a priority.
 
+*Depenencies: `python`, `bash`, and `pyton-pip`*
+
 ## Install
 
 ### Compile from source

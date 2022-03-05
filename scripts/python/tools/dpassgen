@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import string
 import random
 import sys
@@ -9,6 +10,10 @@ def usage():
   print('when not passing enough arguments the default will be used, the default is as follows. lenth:16, letters:9, digits:4, special:3')
 
 # Number of character types
+if str(sys.argv[1]) == 'usage':
+  usage()
+  exit(0)
+  
 if len(sys.argv) < 5:
   length = 16
   regualr_char_count = 9

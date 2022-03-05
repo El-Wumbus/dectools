@@ -58,4 +58,10 @@ sudo chmod u+x ./install.sh
 
 [![asciicast](https://asciinema.org/a/473926.svg)](https://asciinema.org/a/473926)
 
+- `dpassgen` - random password generator. get usage by typing `dpassgen usage`
+
+### example
+
+[![asciicast](https://asciinema.org/a/473989.svg)](https://asciinema.org/a/473989)
+
 - More misc tools...  

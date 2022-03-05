@@ -16,7 +16,7 @@ compileBinaries() {
 installBinaries() {
   cd ./source || exit
   sudo cp -rv ../bin/expertc /usr/local/bin
-  rm -f ./bin/*
+  rm -f ./bin
   cd ..
 }
 
@@ -34,8 +34,8 @@ printf "Starting...\n"
 install() {
   compileBinaries && printf "\nBinaries Compiled\n\n"
   installTools && printf "Shell scripts installed\n\n"
-  pythonDependencies && printf "python dependencies installed/n/n"
-  installPythonScripts && printf "python scripts installed"
+  pythonDependencies && printf "python dependencies installed \n\n"
+  installPythonScripts && printf "python scripts installed\n\n"
   installBinaries && printf "Biniares Installed\n"
 }
 

@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+import string
+import random
+import sys
+from colorama import Fore
+
+def usage():
+  print('usage: '+ str(sys.argv[0]) +' (optional: [password lenth] [number of letters] [number of digits] [number of special chars])')
+  print('when not passing enough arguments the default will be used, the default is as follows. lenth:16, letters:9, digits:4, special:3')
+
+# Number of character types
+if len(sys.argv) < 5:
+  length = 16
+  regualr_char_count = 9
+  digits_count = 4
+  special_characters_count = 3
+else:
+  length = int(sys.argv[1])
+  regualr_char_count = int(sys.argv[2])
+  digits_count = int(sys.argv[3])
+  special_characters_count = int(sys.argv[4])
+
+## Characters to generate password from
+alphabets = list(string.ascii_letters)
+digits = list(string.digits)
+special_characters = list("!@#$%^&*?><")
+characters = list(string.ascii_letters + string.digits + "!@#$%^&*?><")
+
+# Check the total length with characters sum count
+characters_count = regualr_char_count + digits_count + special_characters_count
+if characters_count > length:
+	print("Characters total count is greater than the password length")
+	exit(1)
+
+# Initializing the password variable
+password = []
+
+# Pick random letters
+for i in range(regualr_char_count):
+	password.append(random.choice(alphabets))
+
+# Pick random digits
+for i in range(digits_count):
+	password.append(random.choice(digits))
+
+# Pick random special chars
+for i in range(special_characters_count):
+  password.append(random.choice(special_characters))
+
+# If the lenth is incorrect, fix it by adding more
+if characters_count < length:
+	random.shuffle(characters)
+	for i in range(length - characters_count):
+		password.append(random.choice(characters))
+
+# Randomly shuffle the password 
+random.shuffle(password)
+
+# Print the password as a string
+passwordFinal = str(''.join(password))
+print('Password: ' + Fore.RED + passwordFinal)
+
+exit

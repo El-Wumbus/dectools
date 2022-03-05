@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 import names
 import sys
+
 if len(sys.argv) > 1:
   argumentOne = int(sys.argv[1])
+    
 else:
   argumentOne = 1
 

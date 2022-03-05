@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+die() {
+  echo "$Z: $*" 1>&2
+  exit 0
+}
+
 fail() {
     printf "an error has occured, please refer to the terminal output"
     exit
@@ -24,6 +30,13 @@ kdeBackup() {
     kdeArchiveCreate
     printf "finished"
 }
+
+Uname=$(uname)
+case $Uname in
+Linux*) ;;
+*) die "This only works on Linux!" ;;
+esac
+
 
 read -rp "Do you want to backup KDE? [Y/n] " yn
 case $yn in

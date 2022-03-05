@@ -6,7 +6,7 @@ installTools() {
 }
 
 compileBinaries() {
-  cd ./source/
+  cd ./source/ || exit
   mkdir ../bin
   rustc ./expertc/src/main.rs -o ../bin/expertc >/dev/null
   gcc ./dedit/src/dedit.c -o ../bin/dedit
@@ -15,7 +15,7 @@ compileBinaries() {
 }
 
 installBinaries() {
-  cd ./source
+  cd ./source || exit
   sudo cp -rv ../bin/expertc /usr/local/bin
   sudo cp -rv ../bin/dedit /usr/local/bin
   rm -f ./bin/*
@@ -28,7 +28,7 @@ pythonDependencies() {
 
 installPythonScripts() {
   sudo chmod +x ./scripts/python/tools/*
-  cp -rv ./scripts/python/tools/*
+  cp -rv ./scripts/python/tools/* $HOME/.local/bin/
 }
 
 printf "Starting...\n"

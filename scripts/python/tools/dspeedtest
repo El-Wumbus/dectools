@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+import speedtest
+import urllib.request
+
+
+def connect(host='https://github.com'):
+  try:
+    urllib.request.urlopen(host)
+    return True
+  except:
+    return False
+
+
+if connect():
+  print('✅ Connected to the internet')
+else:
+  print('❌ Not connected to the internet!')
+  exit(1)
+
+print('Starting network speed test...')
+
+# Get the speed test results
+st = speedtest.Speedtest()
+downloadSpeedBits = st.download()
+uploadSpeedBits = st.upload()
+
+# Convert the speed results into megabits
+downloadSpeedMegabits = downloadSpeedBits / 1000000
+uploadSpeedMegabits = uploadSpeedBits / 1000000
+
+# Truncate the converted speed results
+downloadSpeedFinal = int(downloadSpeedMegabits)
+uploadSpeedFinal = int(uploadSpeedMegabits)
+
+# Print the speed test results
+print('↓ Download Speed: ' + str(downloadSpeedFinal) + ' Mb/s (Megabits per second)')
+print('↑ Upload Speed: ' + str(uploadSpeedFinal) + ' Mb/s (Megabits per second)')

@@ -8,31 +8,46 @@
 
 verNumber="0.1.0"
 
-if [ ! -f "$1" ] ; then
-  echo -e "'$1' is not a valid file \n"
-fi
+usage() {
 
-version() {
- printf "%s",$verNumber
+  cat <<EOF
+${0} - Minify html and css files.
+
+Usage: $0 [file one] [optional file two]
+
+    file one:           The input file
+    optional file two:  The output file, otherwise the script will echo the minified output.
+
+EOF
+
+  exit 0
 }
 
-if [ "${1}" == "-v" ]; then 
+version() {
+  printf "%s",$verNumber
+}
+
+if [ "${1}" == "-v" ]; then
   version
   exit 0
-else 
-  if [ "${1}" == "" ]; then 
-    echo "usage: minify [file] [Optional: output file]"
+else
+  if [ "${1}" == "" ]; then
+    usage
     exit 1
   fi
 fi
 
+if [ ! -f "$1" ]; then
+  echo -e "'$1' is not a valid file \n"
+fi
+
 minified=$(sed -e 's/   //g' -e ':a;N;$!ba;s/\n//g' "$1" | sed -r '/^\s+$/d')
 
-if [ "$2" == "" ]; then 
+if [ "$2" == "" ]; then
   echo "$minified"
   exit 0
 else
   Ofile="$2"
-  echo "$minified" > "$Ofile"
+  echo "$minified" >"$Ofile"
   exit 0
 fi

@@ -12,9 +12,11 @@ DECTOOLS
 
 ## Compile from source
 
-*Build Dependencies: `rust`, and `gcc`*
+*Build Dependencies: `rust`*
 
 clone and run the install script
+
+> note: the install script will compile and install everything for you.
 
 ```shell
 git clone https://github.com/El-Wumbus/dectools.git

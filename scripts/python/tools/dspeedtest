@@ -25,7 +25,7 @@ uploadSpeedBits = speedtest.Speedtest().upload()
 
 # Convert the speed results into megabits then truncate the converted speed results at the decimal point
 downloadSpeedFinal = int(downloadSpeedBits / 1000000)
-uploadSpeedFinal = int(uploadSpeedMegabits = uploadSpeedBits / 1000000)
+uploadSpeedFinal = int(uploadSpeedBits / 1000000)
 
 # Print the speed test results
 print('↓ Download Speed: ' + str(downloadSpeedFinal) + ' Mb/s (Megabits per second)')

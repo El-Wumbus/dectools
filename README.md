@@ -5,6 +5,8 @@
 
 > Some may work on macOS, though functionality isn't a priority.
 
+For a more updated version of this document *[The Decator wiki](https://el-wumbus.github.io/wiki)*  
+
 *Depenencies: `python`, `bash`, and `pip`*
 
 ## Install
@@ -35,7 +37,6 @@ cd dectools
 ./install.sh
 ```
 
-
 ## Tools
 
 - `htminify` - A bash script that quickly minifies html and css. *[example](https://asciinema.org/a/UrK0zTDwZeVA0qfpDdijE8a1A)*
@@ -56,4 +57,4 @@ cd dectools
 
 - `expertc` - A useful terminal calculator written in rust.
 
-To Learn how to use all tools visit *[The Decator wiki](https://el-wumbus.github.io/wiki)* coming soon...
+To Learn how to use all tools visit *[The Decator wiki](https://el-wumbus.github.io/wiki)*  

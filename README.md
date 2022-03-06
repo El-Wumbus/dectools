@@ -1,6 +1,8 @@
 
 # DECTOOLS
 
+For an updated version of this page, visit *[The Decator wiki](https://el-wumbus.github.io/wiki)*
+
 >Development Branch
 
 *A collection of semi-useful tools made for GNU/Linux.*

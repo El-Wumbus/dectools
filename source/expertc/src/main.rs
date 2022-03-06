@@ -1,9 +1,3 @@
-/**
-AUTHOR:  Decator
-WEBSITE: https://el-wumbus.github.io/
-DISCORD: https://discord.gg/8wBUFeGGYc
-GITHUB:  https://github.com/El-Wumbu
-**/
 
 use std::io;
 use std::io::prelude::*;

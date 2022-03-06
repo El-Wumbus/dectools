@@ -15,7 +15,7 @@
 
 Clone and run the install script
 
-> note: the install script will compile and install everything for you.
+> note: The install script will compile and install everything for you.
 
 ```shell
 git clone https://github.com/El-Wumbus/dectools.git
@@ -26,7 +26,15 @@ sudo chmod u+x ./install.sh
 
 ### Install Using *pre-compiled binaries*
 
-***NOT AVALIBLE IN DEVELOPMENT***
+> Linux Only
+
+```shell
+wget https://github.com/El-Wumbus/dectools/releases/download/v1.0.1/dectools-v1.0.1-Linux-x86_64.tar.gz
+tar -xzf ./dectools-v1.0.1-Linux-x86_64.tar.gz
+cd dectools
+./install.sh
+```
+
 
 ## Tools
 

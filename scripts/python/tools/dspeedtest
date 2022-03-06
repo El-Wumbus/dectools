@@ -20,17 +20,12 @@ else:
 print('Starting network speed test...')
 
 # Get the speed test results
-st = speedtest.Speedtest()
-downloadSpeedBits = st.download()
-uploadSpeedBits = st.upload()
+downloadSpeedBits = speedtest.Speedtest().download()
+uploadSpeedBits = speedtest.Speedtest().upload()
 
-# Convert the speed results into megabits
-downloadSpeedMegabits = downloadSpeedBits / 1000000
-uploadSpeedMegabits = uploadSpeedBits / 1000000
-
-# Truncate the converted speed results
-downloadSpeedFinal = int(downloadSpeedMegabits)
-uploadSpeedFinal = int(uploadSpeedMegabits)
+# Convert the speed results into megabits then truncate the converted speed results at the decimal point
+downloadSpeedFinal = int(downloadSpeedBits / 1000000)
+uploadSpeedFinal = int(uploadSpeedMegabits = uploadSpeedBits / 1000000)
 
 # Print the speed test results
 print('↓ Download Speed: ' + str(downloadSpeedFinal) + ' Mb/s (Megabits per second)')

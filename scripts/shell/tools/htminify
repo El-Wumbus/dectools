@@ -6,7 +6,7 @@
 # DISCORD: https://discord.gg/8wBUFeGGYc
 # GITHUB:  https://github.com/El-Wumbus
 
-verNumber="0.1.0"
+verNumber="1.0.0"
 
 usage() {
 

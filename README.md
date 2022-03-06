@@ -56,4 +56,4 @@ cd dectools
 
 - `expertc` - A useful terminal calculator written in rust.
 
-To Learn how to use all tools visit *[The Decator wiki](https://el-wumbus.github.io/wiki)*
+To Learn how to use all tools visit *[The Decator wiki](https://el-wumbus.github.io/wiki)* coming soon...

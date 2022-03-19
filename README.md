@@ -9,6 +9,8 @@ For an updated version of this page, visit *[The Decator wiki](https://el-wumbus
 
 > Some may work on macOS, though functionality isn't a priority.
 
+For a more updated version of this document *[The Decator wiki](https://el-wumbus.github.io/wiki)*  
+
 *Depenencies: `python`, `bash`, and `pip`*
 
 ## Install
@@ -19,7 +21,7 @@ For an updated version of this page, visit *[The Decator wiki](https://el-wumbus
 
 Clone and run the install script
 
-> note: the install script will compile and install everything for you.
+> note: The install script will compile and install everything for you.
 
 ```shell
 git clone https://github.com/El-Wumbus/dectools.git
@@ -30,7 +32,14 @@ sudo chmod u+x ./install.sh
 
 ### Install Using *pre-compiled binaries*
 
-***NOT AVALIBLE IN DEVELOPMENT***
+> Linux Only
+
+```shell
+wget https://github.com/El-Wumbus/dectools/releases/download/v1.0.1/dectools-v1.0.1-Linux-x86_64.tar.gz
+tar -xzf ./dectools-v1.0.1-Linux-x86_64.tar.gz
+cd dectools
+./install.sh
+```
 
 ## Tools
 
@@ -52,4 +61,4 @@ sudo chmod u+x ./install.sh
 
 - `expertc` - A useful terminal calculator written in rust.
 
-To Learn how to use all tools visit *[The Decator wiki](https://el-wumbus.github.io/wiki)*
+To Learn how to use all tools visit *[The Decator wiki](https://el-wumbus.github.io/wiki)*  

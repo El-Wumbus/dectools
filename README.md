@@ -11,7 +11,7 @@ For an updated version of this page, visit *[The Decator wiki](https://el-wumbus
 
 For a more updated version of this document *[The Decator wiki](https://el-wumbus.github.io/wiki)*  
 
-*Depenencies: `python`, `bash`, and `pip`*
+*Depenencies: `python`, `bash`, `tree`, and `pip`*
 
 ## Install
 
